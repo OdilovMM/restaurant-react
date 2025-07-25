@@ -8,7 +8,7 @@ import MemberPageRaducer from "./screens/MemberPage/slice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(reduxLogger),
+    getDefaultMiddleware().concat(),
   reducer: {
     homePage: HomePageReducer,
     restaurantPage: RestaurantPageReducer,

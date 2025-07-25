@@ -21,7 +21,6 @@ class CommunityApiService {
       let form_data = new FormData();
       form_data.append("community_image", image);
 
-      console.log("image::", image);
       const result = await axios(`${this.path}/community/image`, {
         method: "POST",
         data: form_data,
@@ -32,13 +31,10 @@ class CommunityApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.data);
 
       const image_name: string = result.data.data;
-      console.log("image_name:::", image_name);
       return image_name;
     } catch (err: any) {
-      console.log(`ERROR::: uploadImageToServer ${err.message}`);
       throw err;
     }
   }
@@ -52,12 +48,10 @@ class CommunityApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.data);
 
       const article: BoArticle = result.data.data;
       return article;
     } catch (err: any) {
-      console.log(`ERROR::: createArticle ${err.message}`);
       throw err;
     }
   }
@@ -72,12 +66,10 @@ class CommunityApiService {
       });
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const articles: BoArticle[] = result.data.data;
       return articles;
     } catch (err: any) {
-      console.log(`ERROR::: getTargetArticle ${err.message}`);
       throw err;
     }
   }
@@ -91,12 +83,10 @@ class CommunityApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const articles: BoArticle[] = result.data.data;
       return articles;
     } catch (err: any) {
-      console.log(`ERROR::: getMemberCommunityArticles ${err.message}`);
       throw err;
     }
   }
@@ -109,12 +99,10 @@ class CommunityApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const article: BoArticle = result.data.data;
       return article;
     } catch (err: any) {
-      console.log(`ERROR::: getChosenArticle ${err.message}`);
       throw err;
     }
   }

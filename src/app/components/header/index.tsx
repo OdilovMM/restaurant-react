@@ -1,176 +1,136 @@
 import {
-  Badge,
-  Box,
-  Button,
-  Container,
-  IconButton,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  Stack,
-} from "@mui/material";
-// import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
-import { Basket } from "./basket";
-import { verifiedMemberData } from "../../apiServices/verify";
+	Avatar,
+	Box,
+	Button,
+	Container,
+	IconButton,
+	Menu,
+	MenuItem,
+	ListItemIcon,
+	Stack,
+	Typography,
+} from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { Logout } from '@mui/icons-material';
+import { Basket } from './basket';
+import { verifiedMemberData } from '../../apiServices/verify';
 
 export function NavbarHome(props: any) {
-  return (
-    <div className="format home_navbar">
-      <Container>
-        <Stack
-          flexDirection={"row"}
-          className="navbar_config"
-          justifyContent={"space-between"}
-        >
-          <Box>
-            <img src="/icons/papay.svg" />
-          </Box>
-          <Stack
-            flexDirection={"row"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
-            className="navbar_links"
-          >
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/" activeClassName="underline">
-                Bosh Sahifa
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/restaurant" activeClassName="underline">
-                Oshhona
-              </NavLink>
-            </Box>
-            {verifiedMemberData ? (
-              <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
-            ) : null}
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/community" activeClassName="underline">
-                Jamiyat
-              </NavLink>
-            </Box>
-            {verifiedMemberData ? (
-              <Box className="hover-line" onClick={props.setPath}>
-                <NavLink to="/member-page" activeClassName="underline">
-                  Sahifam
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/help" activeClassName="underline">
-                Yordam
-              </NavLink>
-            </Box>
-            
-            <Basket
-              cartItems={props.cartItems}
-              onAdd={props.onAdd}
-              onRemove={props.onRemove}
-              onDelete={props.onDelete}
-              onDeleteAll={props.onDeleteAll}
-              setOrderRebuild={props.setOrderRebuild}
-            />
+	return (
+		<Box className='navbar-root'>
+			<Container maxWidth='lg'>
+				<Stack
+					direction='row'
+					justifyContent='space-between'
+					alignItems='center'
+					className='navbar-top'
+				>
+					<Typography variant='h5' fontWeight={700}>
+						Online Restaurant
+					</Typography>
+					<Stack
+						direction='row'
+						spacing={3}
+						alignItems='center'
+						className='navbar-links'
+					>
+						<NavLink to='/' className='nav-item' onClick={props.setPath}>
+							Explore
+						</NavLink>
+						<NavLink
+							to='/restaurant'
+							className='nav-item'
+							onClick={props.setPath}
+						>
+							Restaurants
+						</NavLink>
+						{verifiedMemberData && (
+							<NavLink
+								to='/orders'
+								className='nav-item'
+								onClick={props.setPath}
+							>
+								Orders
+							</NavLink>
+						)}
+						<NavLink
+							to='/community'
+							className='nav-item'
+							onClick={props.setPath}
+						>
+							Social
+						</NavLink>
+						{verifiedMemberData && (
+							<NavLink
+								to='/member-page'
+								className='nav-item'
+								onClick={props.setPath}
+							>
+								My Page
+							</NavLink>
+						)}
+						<NavLink to='/help' className='nav-item' onClick={props.setPath}>
+							Help
+						</NavLink>
 
-            {!verifiedMemberData ? (
-              <Box>
-                <Button
-                  variant="contained"
-                  style={{ color: "#fff", background: "#1976d2" }}
-                  onClick={props.handleLoginOpen}
-                >
-                  KIRISH
-                </Button>
-              </Box>
-            ) : (
-              <img
-                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
-                src={verifiedMemberData.mb_image}
-                alt="member_img"
-                onClick={props.handleLogOutClick}
-              />
-            )}
-            <Menu
-              anchorEl={props.anchorEl}
-              open={props.open}
-              onClose={props.handleCloseLogOut}
-              onClick={props.handleCloseLogOut}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px, 2px, 8px, rgba(0, 0, 0, 0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: "''",
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem onClick={props.handleLogOutRequest}>
-                <ListItemIcon>
-                  <Logout fontSize="small" style={{ color: "blue" }} />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
-          </Stack>
-        </Stack>
+						<Basket
+							cartItems={props.cartItems}
+							onAdd={props.onAdd}
+							onRemove={props.onRemove}
+							onDelete={props.onDelete}
+							onDeleteAll={props.onDeleteAll}
+							setOrderRebuild={props.setOrderRebuild}
+						/>
 
-        <Stack className="head_information">
-          <Stack
-            justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
-          >
-            <Box>
-              <img src="/icons/wellcome.svg" />
-            </Box>
-            <Box className="define_restaurant">
-              The Authentic Restaurant & Cafe
-            </Box>
-            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
-            <Box sx={{ mt: "90px" }}>
-              {!verifiedMemberData ? (
-                <Button
-                  variant="contained"
-                  style={{
-                    width: "210px",
-                    height: "60px",
-                    background: "#1976d2",
-                    color: "#fff",
-                  }}
-                  onClick={props.handleSignupOpen}
-                >
-                  RO’YHATDAN O’TISH
-                </Button>
-              ) : null}
-            </Box>
-          </Stack>
-          <Box className="big_img"></Box>
-        </Stack>
-      </Container>
-    </div>
-  );
+						{!verifiedMemberData ? (
+							<Button variant='contained' onClick={props.handleLoginOpen}>
+								Login
+							</Button>
+						) : (
+							<IconButton onClick={props.handleLogOutClick}>
+								<Avatar src={verifiedMemberData.mb_image} alt='user' />
+							</IconButton>
+						)}
+						<Menu
+							anchorEl={props.anchorEl}
+							open={props.open}
+							onClose={props.handleCloseLogOut}
+							onClick={props.handleCloseLogOut}
+						>
+							<MenuItem onClick={props.handleLogOutRequest}>
+								<ListItemIcon>
+									<Logout fontSize='small' />
+								</ListItemIcon>
+								Logout
+							</MenuItem>
+						</Menu>
+					</Stack>
+				</Stack>
+
+				{/* Head section */}
+				<Stack
+					className='navbar-hero'
+					direction='row'
+					justifyContent='space-between'
+					alignItems='center'
+				>
+					<Box>
+						<Typography variant='h3' fontWeight={600}>
+							Restaurants & Cafes
+						</Typography>
+						{!verifiedMemberData && (
+							<Button
+								variant='contained'
+								color='primary'
+								sx={{ mt: 3 }}
+								onClick={props.handleSignupOpen}
+							>
+								Sign Up
+							</Button>
+						)}
+					</Box>
+				</Stack>
+			</Container>
+		</Box>
+	);
 }

@@ -19,12 +19,10 @@ class FollowApiService {
       });
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const followers: Follower[] = result.data.data;
       return followers;
     } catch (err: any) {
-      console.log(`ERROR::: getMemberFollowers ${err.message}`);
       throw err;
     }
   }
@@ -39,12 +37,10 @@ class FollowApiService {
       });
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const followings: Following[] = result.data.data;
       return followings;
     } catch (err: any) {
-      console.log(`ERROR::: getMemberFollowings ${err.message}`);
       throw err;
     }
   }
@@ -61,11 +57,9 @@ class FollowApiService {
       );
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       return result.data.data === 'subscribed'
     } catch (err: any) {
-      console.log(`ERROR::: subscribe ${err.message}`);
       throw err;
     }
   }
@@ -82,11 +76,9 @@ class FollowApiService {
       );
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       return result.data.data === 'unsubscribed'
     } catch (err: any) {
-      console.log(`ERROR::: unsubscribe ${err.message}`);
       throw err;
     }
   }

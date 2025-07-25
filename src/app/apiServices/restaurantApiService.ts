@@ -20,12 +20,10 @@ class RestaurantApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const top_restaurants: Restaurant[] = result.data.data;
       return top_restaurants;
     } catch (err: any) {
-      console.log(`ERROR ::: getTopRestaurants ${err.message}`);
       throw err;
     }
   }
@@ -37,12 +35,10 @@ class RestaurantApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const restaurants: Restaurant[] = result.data.data;
       return restaurants;
     } catch (err: any) {
-      console.log(`ERROR ::: getRestaurants ${err.message}`);
       throw err;
     }
   }
@@ -54,12 +50,10 @@ class RestaurantApiService {
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
 
       const restaurants: Restaurant[] = result.data.data;
       return restaurants;
     } catch (err: any) {
-      console.log(`ERROR ::: getChosenRestaurant ${err.message}`);
       throw err;
     }
   }
